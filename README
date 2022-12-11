@@ -1,0 +1,1 @@
+A simple collection of implemented monads to avoid copying them to different projects and ending up with different implementations between them
