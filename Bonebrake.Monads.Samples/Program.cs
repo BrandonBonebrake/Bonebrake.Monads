@@ -29,6 +29,12 @@
 	.Unbind()
 	.OfMaybe()
 	.Invoke(Console.WriteLine);
+
+string? nullStr = null;
+""
+	.OfMaybe()
+	.Bind(_ => nullStr)
+	.Invoke(Console.WriteLine);
 	
 "D://Test.txt"
 	.ToFileIO()
@@ -41,6 +47,10 @@
 	.ToFileIO()
 	.UnbindPath()
 	.Invoke(Console.WriteLine);
+
+"D://Test.txt"
+	.ToFileIO()
+	.Write(_ => string.Empty);
 	
 new FileIO()
 	.Bind(x => x + " This is a test of code that will not execute")
