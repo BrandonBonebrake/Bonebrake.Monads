@@ -30,3 +30,14 @@
 	.OfMaybe()
 	.Invoke(Console.WriteLine);
 	
+"D://Test.txt"
+	.ToFileIO()
+	.Bind(x => x + "Hello World 4\n")
+	.Write(x => x + "Hello World 4\n")
+	.Unbind(x => x)
+	.Invoke(Console.WriteLine);
+	
+"D://Test.txt"
+	.ToFileIO()
+	.UnbindPath()
+	.Invoke(Console.WriteLine);
