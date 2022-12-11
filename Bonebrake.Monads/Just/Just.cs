@@ -1,7 +1,7 @@
 ﻿namespace Bonebrake.Monads.Just;
 
 /// <summary>
-/// The just monad. It's purpose is to hold an object
+/// The just monad. It's purpose is to just hold an object
 /// </summary>
 /// <typeparam name="T">The type of the object being held</typeparam>
 public readonly struct Just<T>
@@ -9,7 +9,7 @@ public readonly struct Just<T>
 	private readonly T? _instance;
 	
 	public Just() => _instance = default;
-	public Just(T instance) => _instance = instance;
+	public Just(T? instance) => _instance = instance;
 
 	public Just<TU> Bind<TU>(Func<T, TU> func)
 	{
