@@ -41,3 +41,8 @@
 	.ToFileIO()
 	.UnbindPath()
 	.Invoke(Console.WriteLine);
+	
+new FileIO()
+	.Bind(x => x + " This is a test of code that will not execute")
+	.Unbind(x => x)
+	.Invoke(Console.WriteLine);
