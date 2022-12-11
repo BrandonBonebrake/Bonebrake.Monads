@@ -1,4 +1,4 @@
-﻿namespace Bonebrake.Monads.Just;
+﻿namespace Bonebrake.Monads;
 
 /// <summary>
 /// The just monad. It's purpose is to just hold an object
@@ -25,6 +25,20 @@ public readonly struct Just<T>
 			default : 
 			func(_instance);
 	}
+	
+	public Just<T> Invoke(Action<T> action)
+	{
+		Bind(t =>
+		{
+			action(t);
+			return new Just<T>();
+		});
+
+		return this;
+	}
+
+	public bool DoesExist() => _instance is not null;
+	public bool DoesNotExist() => _instance is null;
 }
 
 public static class JustExt

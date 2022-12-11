@@ -1,6 +1,4 @@
-﻿using Bonebrake.Monads.Just;
-
-namespace Bonebrake.Monads.Maybe;
+﻿namespace Bonebrake.Monads;
 
 /// <summary>
 /// The maybe monad. Contains an object that may be
@@ -22,6 +20,17 @@ public readonly struct Maybe<T>
 
 	public Just<T> Unbind() => _just;
 	public Just<TU> Unbind<TU>(Func<T, TU> func) => new(_just.Unbind(func));
+	
+	public Maybe<T> Invoke(Action<T> action)
+	{
+		_just.Invoke(action);
+		return this;
+	}
+	
+	public bool DoesExist() => _just.DoesExist();
+	public bool DoesNotExist() => _just.DoesNotExist();
+	
+	public static Maybe<T> None() => new();
 }
 
 public static class MaybeExt
