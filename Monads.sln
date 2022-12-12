@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonebrake.Monads", "Bonebra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonebrake.Monads.Samples", "Bonebrake.Monads.Samples\Bonebrake.Monads.Samples.csproj", "{7925DCFC-4510-441B-B06D-85A159D8143F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonebrake.Monads.Benchmarks", "Bonebrake.Monads.Benchmarks\Bonebrake.Monads.Benchmarks.csproj", "{2A298795-18AF-47B5-8D25-60C57C6EC21E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{7925DCFC-4510-441B-B06D-85A159D8143F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7925DCFC-4510-441B-B06D-85A159D8143F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7925DCFC-4510-441B-B06D-85A159D8143F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A298795-18AF-47B5-8D25-60C57C6EC21E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A298795-18AF-47B5-8D25-60C57C6EC21E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A298795-18AF-47B5-8D25-60C57C6EC21E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A298795-18AF-47B5-8D25-60C57C6EC21E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

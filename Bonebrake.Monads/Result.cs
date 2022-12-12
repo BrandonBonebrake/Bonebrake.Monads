@@ -63,7 +63,7 @@ public readonly struct Result<T>
 
 public static class ResultExt
 {
-	public static Result<T> OkResult<T>(this T instance) where T: class => new(instance);
+	public static Result<T> OkResult<T>(this T instance) => new(instance);
 	public static Result<T> FailureResult<T>(this IEnumerable<ResultError> errors) => new(errors);
 	public static Result<T> FailureResult<T>(this ResultError error) => new(error);
 }
