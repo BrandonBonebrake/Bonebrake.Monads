@@ -19,7 +19,7 @@ public struct FileIO
 
 	public FileIO Bind(Func<string, string> func)
 	{
-		_maybeFileContent = File.Exists(_path.Unbind(x => x).Unbind()) ? 
+		_maybeFileContent = File.Exists(_path.Map(x => x).Map()) ? 
 			BindInternal(func, FileMode.Open) : 
 			Maybe<string>.None();
 
@@ -32,17 +32,17 @@ public struct FileIO
 		if (_path.DoesNotExist()) return this;
 		
 		_maybeFileContent = BindInternal(func, FileMode.Open);
-		File.WriteAllText(_path.Unbind(x => x).Unbind()!, _maybeFileContent.Unbind(x => x).Unbind());
+		File.WriteAllText(_path.Map(x => x).Map()!, _maybeFileContent.Map(x => x).Map());
 		
 		return this;
 	}
 
-	public Maybe<string> Unbind(Func<string, string> func)
+	public Maybe<string> Map(Func<string, string> func)
 	{
 		return _maybeFileContent.Bind(func);
 	}
 	
-	public Maybe<string> UnbindPath()
+	public Maybe<string> MapPath()
 	{
 		return _path;
 	}
@@ -54,12 +54,12 @@ public struct FileIO
 
 		if (fileMode is FileMode.Create or FileMode.OpenOrCreate)
 		{
-			File.Open(_path.Unbind(x => x).Unbind()!, fileMode).Close();
+			File.Open(_path.Map(x => x).Map()!, fileMode).Close();
 		}
 		
 		return _maybeFileContent.DoesExist() ?
 			_maybeFileContent.Bind(func) :
-			File.ReadAllText(_path.Unbind(x => x).Unbind()!).OfMaybe().Bind(func);
+			File.ReadAllText(_path.Map(x => x).Map()!).OfMaybe().Bind(func);
 		
 	}
 }

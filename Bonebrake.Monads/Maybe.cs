@@ -17,9 +17,16 @@ public readonly struct Maybe<T>
 	{
 		return new Maybe<TU>(_just.Bind(func));
 	}
+	
+	public Maybe<TU> Bind<TU>(Func<T, Maybe<TU>> func)
+	{
+		return _just.DoesExist() ? 
+			func(_just.Map()!) : 
+			Maybe<TU>.None();
+	}
 
-	public Just<T> Unbind() => _just;
-	public Just<TU> Unbind<TU>(Func<T, TU> func) => new(_just.Unbind(func));
+	public Just<T> Map() => _just;
+	public Just<TU> Map<TU>(Func<T, TU> func) => new(_just.Map(func));
 	
 	public Maybe<T> Invoke(Action<T> action)
 	{
@@ -36,4 +43,6 @@ public readonly struct Maybe<T>
 public static class MaybeExt
 {
 	public static Maybe<T> OfMaybe<T>(this T instance) => new(instance);
+
+	public static Maybe<T> Merge<T>(this Maybe<Maybe<T>> compound) => new(compound.Map().Map().Map());
 }

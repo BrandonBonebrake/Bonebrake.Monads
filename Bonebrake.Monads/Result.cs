@@ -12,7 +12,7 @@ public readonly struct Result<T>
 
 	public Result()
 	{
-		_either = Either<IEnumerable<ResultError>, T>.Neither();
+		_either = Either<IEnumerable<ResultError>, T>.EitherLeft(Enumerable.Empty<ResultError>());
 		_isOk = false;
 	}
 
@@ -46,6 +46,34 @@ public readonly struct Result<T>
 		return !_isOk ? 
 			_either.MaybeLeft().Bind(func) : 
 			Maybe<TU>.None();
+	}
+	
+	public Just<TU> Map<TU>(Func<T, TU> func)
+	{
+		return _isOk ? 
+			_either.MaybeRight().Map(func) : 
+			new Just<TU>();
+	}
+
+	public Just<T> Map()
+	{
+		return _isOk ? 
+			_either.MaybeRight().Map() : 
+			new Just<T>();
+	}
+	
+	public Just<TU> MapErrors<TU>(Func<IEnumerable<ResultError>, TU> func)
+	{
+		return !_isOk ? 
+			_either.MaybeLeft().Map(func) : 
+			new Just<TU>();
+	}
+	
+	public Just<IEnumerable<ResultError>> MapErrors()
+	{
+		return !_isOk ? 
+			_either.MaybeLeft().Map() : 
+			new Just<IEnumerable<ResultError>>();
 	}
 	
 	public Result<T> Invoke(Action<T> action)

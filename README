@@ -4,12 +4,30 @@ A simple collection of implemented monads to avoid copying them to different pro
 Benchmarks
 |                            Method |       Mean |     Error |    StdDev |     Median | Allocated |
 |---------------------------------- |-----------:|----------:|----------:|-----------:|----------:|
-|                        CreateJust |  0.0005 ns | 0.0014 ns | 0.0012 ns |  0.0000 ns |         - |
-|                       CreateMaybe |  0.0010 ns | 0.0015 ns | 0.0014 ns |  0.0001 ns |         - |
-|                  CreateEitherLeft |  2.2477 ns | 0.0039 ns | 0.0034 ns |  2.2479 ns |         - |
-|                 CreateEitherRight |  2.2437 ns | 0.0047 ns | 0.0039 ns |  2.2423 ns |         - |
-|               CreateEitherNeither |  2.0737 ns | 0.0222 ns | 0.0208 ns |  2.0613 ns |         - |
-|                    CreateResultOk |  9.9802 ns | 0.0106 ns | 0.0094 ns |  9.9764 ns |         - |
-|    CreateResultFailureSingleError | 13.1266 ns | 0.0577 ns | 0.0540 ns | 13.1226 ns |      32 B |
-|       CreateResultFailureErrorArr | 13.8149 ns | 0.3036 ns | 0.6133 ns | 13.6915 ns |      32 B |
-| CreateResultFailureErrorArrCached |  9.9938 ns | 0.0392 ns | 0.0348 ns |  9.9892 ns |         - |
+|                        CreateJust |  0.0156 ns | 0.0102 ns | 0.0095 ns |  0.0169 ns |         - |
+|                           JustMap |  0.0304 ns | 0.0173 ns | 0.0153 ns |  0.0256 ns |         - |
+|                   JustMapOneToOne |  1.8860 ns | 0.0346 ns | 0.0324 ns |  1.8816 ns |         - |
+|            JustMapToDifferentType |  4.2961 ns | 0.0204 ns | 0.0170 ns |  4.2906 ns |         - |
+|                       CreateMaybe |  0.0111 ns | 0.0142 ns | 0.0133 ns |  0.0015 ns |         - |
+|                        MaybeMerge |  0.8529 ns | 0.0310 ns | 0.0290 ns |  0.8456 ns |         - |
+|                     MaybeMapEmpty |  0.2460 ns | 0.0179 ns | 0.0168 ns |  0.2429 ns |         - |
+|                  MaybeMapOneToOne |  1.9697 ns | 0.0245 ns | 0.0217 ns |  1.9731 ns |         - |
+|           MaybeMapToDifferentType |  1.9190 ns | 0.0349 ns | 0.0327 ns |  1.9128 ns |         - |
+|                  CreateEitherLeft |  2.2948 ns | 0.0216 ns | 0.0180 ns |  2.2926 ns |         - |
+|                     EitherLeftMap |  4.3477 ns | 0.0538 ns | 0.0503 ns |  4.3242 ns |         - |
+|             EitherLeftMapOneToOne |  6.2521 ns | 0.0421 ns | 0.0329 ns |  6.2514 ns |         - |
+|      EitherLeftMapToDifferentType |  6.2188 ns | 0.0429 ns | 0.0401 ns |  6.2150 ns |         - |
+|                 CreateEitherRight |  2.2884 ns | 0.0443 ns | 0.0414 ns |  2.2778 ns |         - |
+|                    EitherRightMap |  4.7551 ns | 0.0267 ns | 0.0209 ns |  4.7450 ns |         - |
+|            EitherRightMapOneToOne |  6.2415 ns | 0.0395 ns | 0.0369 ns |  6.2362 ns |         - |
+|     EitherRightMapToDifferentType |  6.2451 ns | 0.0571 ns | 0.0534 ns |  6.2177 ns |         - |
+|                    CreateResultOk | 10.0817 ns | 0.0595 ns | 0.0557 ns | 10.0653 ns |         - |
+|    CreateResultFailureSingleError | 13.7440 ns | 0.1923 ns | 0.1606 ns | 13.7204 ns |      32 B |
+|       CreateResultFailureErrorArr | 13.6471 ns | 0.1963 ns | 0.1836 ns | 13.6617 ns |      32 B |
+| CreateResultFailureErrorArrCached | 10.0285 ns | 0.0439 ns | 0.0367 ns | 10.0258 ns |         - |
+|                       ResultOkMap |  9.1116 ns | 0.0301 ns | 0.0235 ns |  9.1072 ns |         - |
+|               ResultOkMapOneToOne | 10.6353 ns | 0.0584 ns | 0.0546 ns | 10.6468 ns |         - |
+|        ResultOkMapToDifferentType | 10.6112 ns | 0.1030 ns | 0.0913 ns | 10.5928 ns |         - |
+|                  ResultFailureMap |  9.5166 ns | 0.0837 ns | 0.0783 ns |  9.5138 ns |         - |
+|          ResultFailureMapOneToOne | 10.6154 ns | 0.0692 ns | 0.0613 ns | 10.6041 ns |         - |
+|   ResultFailureMapToDifferentType | 15.0970 ns | 0.1779 ns | 0.1664 ns | 15.0695 ns |         - |

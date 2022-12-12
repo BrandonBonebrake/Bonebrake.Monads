@@ -18,8 +18,8 @@ public readonly struct Just<T>
 			new Just<TU>(func(_instance));
 	}
 
-	public T? Unbind() => _instance;
-	public TU? Unbind<TU>(Func<T, TU> func)
+	public T? Map() => _instance;
+	public TU? Map<TU>(Func<T, TU> func)
 	{
 		return _instance is null ? 
 			default : 
