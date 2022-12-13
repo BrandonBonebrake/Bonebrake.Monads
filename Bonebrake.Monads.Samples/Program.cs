@@ -62,3 +62,15 @@ new FileIO()
 	.OfMaybe()
 	.Merge()
 	.Invoke(Console.WriteLine);
+	
+"Hello World 6"
+	.OfJust()
+	.OfMaybe()
+	.OfResult(x => x.DoesExist() ? x.Map().Map()!.OfResult() : "The object is null: From Hello World 6".OfResult())
+	.Invoke(Console.WriteLine);
+	
+"Hello World 7"
+	.OfResult()
+	.Map(_ => default(string))
+	.OfResult(x => x.Map()?.OfResult() ?? "The object is null: From Hello World 7".OfResult())
+	.Invoke(Console.WriteLine);
