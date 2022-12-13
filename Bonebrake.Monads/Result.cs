@@ -41,6 +41,13 @@ public readonly struct Result<T>
 			Maybe<TU>.None();
 	}
 	
+	public Result<TU> Bind<TU>(Func<T, Result<TU>> func)
+	{
+		return _isOk ? 
+			func(_either.MapRight(x => x).Map()!) : 
+			_either.MapLeft(x => x).Map()!.OfResult<TU>();
+	}
+	
 	public Maybe<TU> BindErrors<TU>(Func<IEnumerable<ResultError>, TU> func)
 	{
 		return !_isOk ? 
@@ -91,7 +98,16 @@ public readonly struct Result<T>
 
 public static class ResultExt
 {
-	public static Result<T> OkResult<T>(this T instance) => new(instance);
-	public static Result<T> FailureResult<T>(this IEnumerable<ResultError> errors) => new(errors);
-	public static Result<T> FailureResult<T>(this ResultError error) => new(error);
+	public static Result<T> OfResult<T>(this T instance) => new(instance);
+	public static Result<T> OfResult<T>(this IEnumerable<ResultError> errors) => new(errors);
+	public static Result<T> OfResult<T>(this ResultError error) => new(error);
+	
+	public static Result<T> OfResult<T>(this Just<T> just, Func<Just<T>, Result<T>> func) => func(just);
+	public static Result<T> OfResult<T>(this Maybe<T> maybe, Func<Maybe<T>, Result<T>> func) => func(maybe);
+	public static Result<T> OfResult<T>(this Either<IEnumerable<ResultError>, T> either)
+	{
+		return either.IsLeft() ? 
+			either.MapLeft().Map()!.OfResult<T>() : 
+			either.MapRight().Map()!.OfResult();
+	}
 }

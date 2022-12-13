@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>0.4.0</PackageVersion>
+        <PackageVersion>0.4.5</PackageVersion>
         <Title>Bonebrake.Monads</Title>
         <Authors>Brandon Bonebrake</Authors>
         <Description>A collection of simple monads which can be used to avoid having to recreate/copy them into every new project manually</Description>
@@ -13,7 +13,7 @@
         <PackageTags>Monad</PackageTags>
         <PackageProjectUrl>https://github.com/BrandonBonebrake/Bonebrake.Monads</PackageProjectUrl>
         <PackageLicenseUrl>https://choosealicense.com/licenses/gpl-3.0/</PackageLicenseUrl>
-        <PackageReleaseNotes>Renaming Unbind to the correct term Map and adding new Bind which allows users to specify Monads in the return type themselves</PackageReleaseNotes>
+        <PackageReleaseNotes>Adding extension methods off of Result and Maybe for added functionality</PackageReleaseNotes>
     </PropertyGroup>
 
 </Project>

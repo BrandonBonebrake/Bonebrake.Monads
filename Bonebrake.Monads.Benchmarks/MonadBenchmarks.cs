@@ -130,66 +130,66 @@ public class MonadBenchmarks
 	[Benchmark]
 	public Result<string> CreateResultOk()
 	{
-		return string.Empty.OkResult();
+		return string.Empty.OfResult();
 	}
 	
 	[Benchmark]
 	public Result<string> CreateResultFailureSingleError()
 	{
-		return new ResultError(string.Empty).FailureResult<string>();
+		return new ResultError(string.Empty).OfResult<string>();
 	}
 	
 	[Benchmark]
 	public Result<string> CreateResultFailureErrorArr()
 	{
-		return new[] { new ResultError(string.Empty)}.FailureResult<string>();
+		return new[] { new ResultError(string.Empty)}.OfResult<string>();
 	}
 	
 	[Benchmark]
 	public Result<string> CreateResultFailureErrorArrCached()
 	{
-		return Errors.FailureResult<string>();
+		return Errors.OfResult<string>();
 	}
 	
 	[Benchmark]
 	public Just<string> ResultOkMap()
 	{
-		return string.Empty.OkResult()
+		return string.Empty.OfResult()
 			.Map();
 	}
 	
 	[Benchmark]
 	public Just<string> ResultOkMapOneToOne()
 	{
-		return string.Empty.OkResult()
+		return string.Empty.OfResult()
 			.Map(x => x);
 	}
 	
 	[Benchmark]
 	public Just<int> ResultOkMapToDifferentType()
 	{
-		return string.Empty.OkResult()
+		return string.Empty.OfResult()
 			.Map(x => x.Length);
 	}
 	
 	[Benchmark]
 	public Just<IEnumerable<ResultError>> ResultFailureMap()
 	{
-		return Errors.FailureResult<string>()
+		return Errors.OfResult<string>()
 			.MapErrors();
 	}
 	
 	[Benchmark]
 	public Just<IEnumerable<ResultError>> ResultFailureMapOneToOne()
 	{
-		return Errors.FailureResult<string>()
+		return Errors.OfResult<string>()
 			.MapErrors(x => x);
 	}
 	
 	[Benchmark]
 	public Just<bool> ResultFailureMapToDifferentType()
 	{
-		return Errors.FailureResult<string>()
+		return Errors.OfResult<string>()
 			.MapErrors(x => x.Equals(null));
 	}
 }

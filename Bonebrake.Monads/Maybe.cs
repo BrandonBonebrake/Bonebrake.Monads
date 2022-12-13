@@ -43,6 +43,7 @@ public readonly struct Maybe<T>
 public static class MaybeExt
 {
 	public static Maybe<T> OfMaybe<T>(this T instance) => new(instance);
+	public static Maybe<T> OfMaybe<T>(this Just<T> instance) => new(instance);
 
 	public static Maybe<T> Merge<T>(this Maybe<Maybe<T>> compound) => new(compound.Map().Map().Map());
 }
